@@ -26,6 +26,7 @@ public class NotificationController {
 
     @GetMapping(value = "notiftext", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> getNotifText(){
-        return notificationService.getFilterNotification().map(notification -> "Notification : " + notification);
+        return notificationService.getFilterNotification()
+                .map(notification -> "Notification : " + notification);
     }
 }
