@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS utilisateur (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    active BOOLEAN NOT NULL
+    );
+
