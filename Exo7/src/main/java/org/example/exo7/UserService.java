@@ -12,7 +12,6 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-
     public Flux<User> getAllUsers() {
         return userRepository.findAll();
     }
@@ -20,7 +19,6 @@ public class UserService {
     public Mono<User> getUserById(int id) {
         return userRepository.findById(id);
     }
-
 
     public Mono<User> createUser(User user) {
         return userRepository.save(user);
