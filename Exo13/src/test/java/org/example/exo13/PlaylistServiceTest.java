@@ -10,8 +10,15 @@ public class PlaylistServiceTest {
     @Test
     void testTrueGenre(){
         StepVerifier.create(service.getByGenre("rock"))
-                .expectSubscription()
                 .expectNext("Bohemian Rhapsody", "Hotel California", "Stairway to Heaven")
                 .verifyComplete();;
+    }
+
+    @Test
+    void testErrorStream(){
+        StepVerifier.create(service.getByGenre("fish"))
+                .expectErrorMatches(throwable -> throwable instanceof IllegalArgumentException &&
+                        throwable.getMessage().equals("Genre non supporté: fish"))
+                .verify();
     }
 }

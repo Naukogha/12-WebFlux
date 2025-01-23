@@ -8,14 +8,20 @@ import java.util.Map;
 
 public class PlaylistService {
 
-    private static Map<String, List<String>> playlist = new HashMap<>();
+    private static Map<String, List<String>> playlists = new HashMap<>();
 
     public PlaylistService() {
-        playlist.put("rock", List.of("Bohemian Rhapsody", "Hotel California", "Stairway to Heaven"));
-        playlist.put("pop", List.of("Thriller", "Like a Virgin", "Billie Jean"));
+        playlists.put("rock", List.of("Bohemian Rhapsody", "Hotel California", "Stairway to Heaven"));
+        playlists.put("pop", List.of("Thriller", "Like a Virgin", "Billie Jean"));
     }
 
     public Flux<String> getByGenre(String genre){
-        return Flux.empty();
+        List <String> playlist = playlists.get(genre.toLowerCase());
+        if(playlist !=null){
+            return Flux.fromIterable(playlist);
+        }else{
+            return Flux.error(new IllegalArgumentException("Genre non supporté: " + genre));
+        }
+
     }
 }
